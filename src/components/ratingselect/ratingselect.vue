@@ -1,9 +1,9 @@
 <template>
-    <div class="ratingselect">
+    <div class="ratingselect border-1px">
         <div class="up border-1px">
             <span class="block all" :class="{'active':ratingType === 2}" @click="select(2,$event)">全部<span class="count">{{ratings.length}}</span></span>
-            <span class="block positive" :class="{'active':ratingType === 0}" @click="select(0,$event)">推荐<span class="count">2</span></span>
-            <span class="block negative" :class="{'active':ratingType === 1}" @click="select(1,$event)">吐槽<span class="count">1</span></span>
+            <span class="block positive" :class="{'active':ratingType === 0}" @click="select(0,$event)">推荐<span class="count">{{ratingUp}}</span></span>
+            <span class="block negative" :class="{'active':ratingType === 1}" @click="select(1,$event)">吐槽<span class="count">{{ratingDown}}</span></span>
         </div>
         <div class="down" @click="toggleContent">
             <i class="icon-check_circle" :class="{'active':onlyText}"></i>
@@ -28,6 +28,26 @@ export default {
     onlyText: {
       type: Boolean,
       default: false
+    }
+  },
+  computed: {
+    ratingUp() {
+      let length = 0;
+      this.ratings.forEach(rating => {
+        if (rating.rateType === 0) {
+          length++;
+        }
+      });
+      return length;
+    },
+    ratingDown() {
+      let length = 0;
+      this.ratings.forEach(rating => {
+        if (rating.rateType === 1) {
+          length++;
+        }
+      });
+      return length;
     }
   },
   methods: {
@@ -60,10 +80,9 @@ export default {
         }
     }
     .down {
-        padding: 12px 0
+        padding-top: 12px
         font-size: 0
         line-height: 24px
-        border-bottom: 1px solid rgba(7, 17, 27, 0.1)
         .icon-check_circle {
             display: inline-block
             vertical-align: top

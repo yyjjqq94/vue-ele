@@ -29,7 +29,9 @@
           <split></split>
           <div class="rating">
               <h1 class="title">商品评价</h1>
-              <ratingselect :ratings=food.ratings @selectType="selectType" :rating-type=ratingType :only-text=onlyText @toggleContent="toggleContent"></ratingselect>
+              <div class="ratingselect-wrapper border-1px">
+                  <ratingselect :ratings=food.ratings @selectType="selectType" :rating-type=ratingType :only-text=onlyText @toggleContent="toggleContent"></ratingselect>
+              </div>
               <div class="rating-wrapper">
                   <ul v-show="food.ratings">
                       <li v-show="needShow(rating.rateType,rating.text)" class="rating-item border-1px" v-for="(rating, index) in food.ratings" :key="index">
@@ -214,6 +216,9 @@ export default {
             font-size: 14px
             line-height: 14px
             color: rgb(7, 17, 27)
+        }
+        .ratingselect-wrapper {
+            border-1px(rgba(7, 17, 27, 0.1))
         }
         .rating-wrapper {
             .rating-item {
