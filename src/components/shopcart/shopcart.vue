@@ -34,7 +34,7 @@
               </ul>
           </div>
       </div>
-      <div class="mask" v-show="listShow"></div>
+      <div class="mask" @click="hideList" v-show="listShow"></div>
   </div>
 </template>
 
@@ -95,21 +95,31 @@ export default {
         return 'enough';
       }
     },
-    listShow() {
-      if (!this.totalCount) {
-        this.fold = true;
-        return false;
+    listShow: {
+      get: function() {
+        if (!this.totalCount) {
+          this._initFold();
+          return false;
+        }
+        return !this.fold;
+      },
+      set: function(newVal) {
+        this.fold = newVal;
       }
-      let show = !this.fold;
-      return show;
     }
   },
   methods: {
+    _initFold() {
+      this.fold = true;
+    },
     toggleList() {
       if (!this.totalCount) {
         return;
       }
-      this.fold = !this.fold;
+      this.listShow = !this.fold;
+    },
+    hideList() {
+      this.listShow = !this.fold;
     },
     _initScroll() {
       if (!this.scroll) {
