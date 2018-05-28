@@ -52,11 +52,11 @@ export default {
   },
   methods: {
     select(type, event) {
-      this.$emit('selectType', { type: type });
+      this.$emit('selectType', type);
     },
     toggleContent() {
       let flag = !this.onlyText;
-      this.$emit('toggleContent', { flag: flag });
+      this.$emit('toggleContent', flag);
     }
   }
 };
@@ -65,40 +65,40 @@ export default {
 <style lang="stylus" scoped>
 @import '../../common/stylus/mixin'
 .ratingselect {
-    padding: 12px 0
-    .up {
-        padding-bottom: 18px
-        border-1px(rgba(7, 17, 27, 0.1))
-        .block {
-            display: inline-block
-            padding: 8px 12px
-            margin-right: 8px
-            &.active {
-                color: rgb(255, 255, 255)
-                background: rgb(0, 160, 220)
-            }
-        }
+  padding: 12px 0
+  .up {
+    padding-bottom: 18px
+    border-1px(rgba(7, 17, 27, 0.1))
+    .block {
+      display: inline-block
+      padding: 8px 12px
+      margin-right: 8px
+      &.active {
+        color: rgb(255, 255, 255)
+        background: rgb(0, 160, 220)
+      }
     }
-    .down {
-        padding-top: 12px
-        font-size: 0
-        line-height: 24px
-        .icon-check_circle {
-            display: inline-block
-            vertical-align: top
-            font-size: 24px
-            color: rgba(7, 17, 27, 0.1)
-            margin-right: 4px
-            &.active {
-                color: #00c850
-            }
-        }
-        .text {
-            display: inline-block
-            vertical-align: top
-            font-size: 12px
-            color: rgb(147, 153, 1159)
-        }
+  }
+  .down {
+    padding-top: 12px
+    font-size: 0
+    line-height: 24px
+    .icon-check_circle {
+      display: inline-block
+      vertical-align: top
+      font-size: 24px
+      color: rgba(7, 17, 27, 0.1)
+      margin-right: 4px
+      &.active {
+        color: #00c850
+      }
     }
+    .text {
+      display: inline-block
+      vertical-align: top
+      font-size: 12px
+      color: rgb(147, 153, 1159)
+    }
+  }
 }
 </style>

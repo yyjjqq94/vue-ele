@@ -57,6 +57,7 @@ import BScroll from 'better-scroll';
 import cartcontrol from 'components/cartcontrol/cartcontrol';
 import split from 'components/split/split';
 import ratingselect from 'components/ratingselect/ratingselect';
+let selectedFood = {};
 export default {
   props: {
     food: {
@@ -74,6 +75,13 @@ export default {
       ratingType: 2,
       onlyText: false
     };
+  },
+  beforeUpdate() {
+    if (this.food !== selectedFood) {
+      this.ratingType = 2;
+      this.onlyText = false;
+      selectedFood = this.food;
+    }
   },
   methods: {
     addFirst() {
@@ -94,8 +102,8 @@ export default {
     hide() {
       this.showFlag = false;
     },
-    selectType(obj) {
-      this.ratingType = obj.type;
+    selectType(type) {
+      this.ratingType = type;
     },
     needShow(type, text) {
       if (this.onlyText && !text) {
@@ -107,8 +115,8 @@ export default {
         return type === this.ratingType;
       }
     },
-    toggleContent(obj) {
-      this.onlyText = obj.flag;
+    toggleContent(flag) {
+      this.onlyText = flag;
     }
   }
 };
